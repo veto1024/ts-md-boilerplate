@@ -1,9 +1,31 @@
 {
   "name": "ts-bs-boilerplate",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "author": "Jonathan Roveto",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/veto1024/ts-md-boilerplate"
+  },
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "type": "module",
-  "description": "Boilerplate code for a Typescript/Material Design project.",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/veto1024"
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "unpkg": "dist/index.min.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "description": "Boilerplate code for a Typescript/Material Design project with Formik helpers.",
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -16,6 +38,7 @@
     "@mui/utils": "^5.0.0",
     "date-fns": "^2.29.3",
     "dotenv": "^14.3.0",
+    "formik": "^2.2.9",
     "history": "^5.0.1",
     "lodash": "^4.17.21",
     "numeral": "^2.0.6",
@@ -32,8 +55,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "prepublishOnly": "npm run build",
+    "types" : "ts-node --noEmit",
     "test": "react-scripts test",
+    "build": "rm -rf dist && rollup -c",
+    "build-watch": "rollup -c -w",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts,.tsx ./src",
     "lint:fix": "eslint --fix --ext .ts,.tsx ./src"
@@ -62,6 +88,7 @@
     "@iconify/icons-la": "^1.1.0",
     "@iconify/icons-tabler": "^1.1.15",
     "@iconify/react": "^3.1.2",
+    "@rollup/plugin-terser": "^0.4.0",
     "@testing-library/user-event": "^14.3.0",
     "@types/node": "^16.18.11",
     "@types/react": "^18.0.26",
@@ -74,6 +101,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "prettier": "^2.6.2",
-    "puppeteer": "^15.5.0"
+    "puppeteer": "^15.5.0",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-replace": "^5.0.2"
   }
 }
