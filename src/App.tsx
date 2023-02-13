@@ -1,5 +1,5 @@
 // theme
-import ThemeConfig from './theme/globalStyles';
+import { ThemeConfig } from './theme/globalStyles';
 import {
   Button,
   Card,
@@ -14,16 +14,19 @@ import {
 } from '@mui/material';
 import React, { FormEvent, useEffect } from 'react';
 import { Form, Formik } from 'formik';
-import FormikMUIAutoComplete from './components/form/FormikMUIAutoComplete';
 import * as Yup from 'yup';
-import { FormikMUICheckbox, FormikMUIDateInput } from './components';
-import FormikMUIRadios from './components/form/FormikMUIRadios';
+import {
+  FormikMUIAutoComplete,
+  FormikMUICheckbox,
+  FormikMUICurrencyInput,
+  FormikMUIDateInput,
+  FormikMUIDateTimeInput,
+  FormikMUIRadios,
+  FormikMUITimeInput
+} from './components';
 import { FormikMUITextInput } from './components';
-import FormikMUICurrencyInput from './components/form/FormikCurrencyInput';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import FormikMUIDateTimeInput from './components/form/FormikMUIDateTimeInput';
-import FormikMUITimeInput from './components/form/FormikMUITimeInput';
 // ----------------------------------------------------------------------
 
 export function App() {

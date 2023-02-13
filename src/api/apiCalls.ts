@@ -1,4 +1,4 @@
-import fetchWithTimeout, { OptionsType } from '../utils/FetchWithTimeout';
+import { fetchWithTimeout, OptionsType } from '../utils';
 import { useEffect, useState } from 'react';
 
 export interface APICallType extends Omit<OptionsType, 'headers'> {

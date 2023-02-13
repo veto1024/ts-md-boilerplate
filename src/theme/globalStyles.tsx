@@ -3,11 +3,11 @@ import React, { useMemo } from 'react';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles';
 //
-import shape from './shape';
-import palette from './palette';
-import typography from './typography';
-import componentsOverride from './overrides';
-import shadows, { customShadows } from './shadows';
+import { shape } from './shape';
+import { palette } from './palette';
+import { typography } from './typography';
+import { ComponentsOverrides } from './overrides';
+import { shadows, customShadows } from './shadows';
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ export function ThemeConfig({ children }: { children: React.ReactNode }) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const theme = createTheme(themeOptions);
-  theme.components = componentsOverride(theme);
+  theme.components = ComponentsOverrides(theme);
 
   return (
     <StyledEngineProvider injectFirst>
