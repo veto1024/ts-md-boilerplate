@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
 import React, { useMemo } from 'react';
 // material
 import { CssBaseline } from '@mui/material';
@@ -13,8 +11,7 @@ import shadows, { customShadows } from './shadows';
 
 // ----------------------------------------------------------------------
 
-
-export default function ThemeConfig({ children }:{children: React.ReactNode}) {
+export default function ThemeConfig({ children }: { children: React.ReactNode }) {
   const themeOptions = useMemo(
     () => ({
       palette,
@@ -26,6 +23,8 @@ export default function ThemeConfig({ children }:{children: React.ReactNode}) {
     []
   );
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const theme = createTheme(themeOptions);
   theme.components = componentsOverride(theme);
 

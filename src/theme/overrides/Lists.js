@@ -23,7 +23,7 @@ export default function Lists(theme) {
       styleOverrides: {
         root: {
           marginTop: 0,
-          marginBottom: 0,
+          marginBottom: 0
         },
         multiline: {
           marginTop: 0,

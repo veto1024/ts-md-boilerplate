@@ -1,7 +1,10 @@
 type OptionsType = {
-  timeout: number
-}
-export default async function fetchWithTimeout(resource: RequestInfo | URL, options:OptionsType): Promise<Response> {
+  timeout: number;
+  method: 'GET' | 'PUT' | 'POST' | 'OPTIONS';
+  headers: Headers;
+  credentials: RequestCredentials | undefined;
+};
+export default async function fetchWithTimeout(resource: RequestInfo | URL, options: OptionsType): Promise<Response> {
   const { timeout = 4000 } = options;
 
   const controller = new AbortController();
