@@ -1,38 +1,30 @@
-import fetchWithTimeout from '../utils/FetchWithTimeout';
+import fetchWithTimeout, { OptionsType } from '../utils/FetchWithTimeout';
+import { useEffect, useState } from 'react';
 
-export const BASE_URL = `${process.env.REACT_APP_API_HTTP_PROTOCOL}://${process.env.REACT_APP_API_URL}`;
+export interface APICallType extends Omit<OptionsType, 'headers'> {
+  url: string;
+  CsrfToken?: string;
+  baseURL: string;
+  contentType: string;
+}
 
-type optionsType = {
-  timeout: number;
-  method: string;
-  headers: Headers;
-  credentials?: string;
-  body?: string | number | object;
-  'X-Csrf-Token'?: string;
-};
-
-export default function apiCall(
-  CsrfToken: string,
-  url: string,
-  method = 'GET',
-  body: null | string | object = null,
-  credentials = 'include'
-): Promise<Response> {
+export function apiCallBase({ CsrfToken, url, method, body, credentials, baseURL, contentType, timeout }: APICallType): Promise<Response> {
   const headers = new Headers({
-    Host: `${BASE_URL}`,
-    'Access-Control-Allow-Origin': `${BASE_URL}`,
-    Origin: `${BASE_URL}`,
-    'Content-Type': 'application/json'
+    Host: baseURL,
+    'Access-Control-Allow-Origin': baseURL,
+    Origin: baseURL,
+    'Content-Type': contentType || 'application/json'
   });
   if (CsrfToken) {
     headers.set('X-Csrf-Token', CsrfToken);
   }
 
-  let options: optionsType = {
-    timeout: parseInt(process.env.REACT_APP_FETCH_TIMEOUT || '4000', 10),
+  let options: OptionsType = {
+    timeout: timeout,
     method,
     headers,
-    credentials
+    credentials,
+    body
   };
 
   if (body) {
@@ -44,3 +36,39 @@ export default function apiCall(
   }
   return fetchWithTimeout(url, options);
 }
+
+export const useAPIBase = <T, _>(CsrfToken: string, baseURL: string, url: string, body = null, method = 'GET', errMsg = null) => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<T | undefined>(undefined);
+  const [errorStatus, setErrorStatus] = useState<number | undefined>(undefined);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const fetchAPI = () =>
+    apiCallBase({
+      CsrfToken,
+      url,
+      method: 'GET',
+      body: {},
+      credentials: 'include',
+      contentType: 'application/json',
+      timeout: 4000,
+      baseURL
+    })
+      .then((res: Response) => {
+        if (res.status === 200 || res.status === 201) {
+          return res.json();
+        }
+        setErrorMessage(errMsg || 'An error has occurred');
+        setErrorStatus(res.status);
+      })
+      .then((json: T) => {
+        setData(json);
+      })
+      .finally(() => setLoading(false));
+
+  useEffect(() => {
+    fetchAPI();
+  }, []);
+
+  return [loading, data, errorStatus, errorMessage];
+};
