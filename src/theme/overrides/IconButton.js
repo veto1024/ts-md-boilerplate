@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------
 
-export default function IconButton(theme) {
+export function IconButton(theme) {
   return {
     MuiIconButton: {
       variants: [

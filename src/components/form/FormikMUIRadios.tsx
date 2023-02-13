@@ -14,7 +14,7 @@ export type FormikMUIRadiosType = {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
 };
 
-const FormikMUIRadios = (props: FormikMUIRadiosType & FieldHookConfig<any>) => {
+export const FormikMUIRadios = (props: FormikMUIRadiosType & FieldHookConfig<any>) => {
   // React treats radios and checkbox inputs differently other input types, select, and textarea.
   // Formik does this too! When you specify `type` to useField(), it will
   // return the correct bag of props for you -- a `checked` prop will be included
@@ -82,8 +82,6 @@ export const QuestionWithButtons = (props: FormikMUIRadiosType & FieldInputProps
     </FormControl>
   );
 };
-
-export default FormikMUIRadios;
 
 const str2bool = (value: string) => {
   if (value) {

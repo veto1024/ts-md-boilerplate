@@ -20,7 +20,7 @@ function responsiveFontSizes({ sm, md, lg }) {
 
 const FONT_PRIMARY = 'Public Sans, sans-serif';
 
-const typography = {
+export const typography = {
   fontFamily: FONT_PRIMARY,
   fontWeightRegular: 400,
   fontWeightMedium: 600,
@@ -97,5 +97,3 @@ const typography = {
     textTransform: 'capitalize'
   }
 };
-
-export default typography;

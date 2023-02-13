@@ -10,7 +10,7 @@ export type FormikMUIDateTimeInputType = {
   TextFieldProps?: TextFieldProps;
 };
 
-const FormikMUIDateTimeInput = (props: FormikMUIDateTimeInputType & FieldHookConfig<any>) => {
+export const FormikMUIDateTimeInput = (props: FormikMUIDateTimeInputType & FieldHookConfig<any>) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input>. We can use field meta to show an error
   // message if the field is invalid and it has been touched (i.e. visited)
@@ -69,5 +69,3 @@ export const FormikMUIMobileDateTimeInput = (props: FormikMUIDateTimeInputType &
     </>
   );
 };
-
-export default FormikMUIDateTimeInput;

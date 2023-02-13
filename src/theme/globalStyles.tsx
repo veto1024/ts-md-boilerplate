@@ -11,7 +11,7 @@ import shadows, { customShadows } from './shadows';
 
 // ----------------------------------------------------------------------
 
-export default function ThemeConfig({ children }: { children: React.ReactNode }) {
+export function ThemeConfig({ children }: { children: React.ReactNode }) {
   const themeOptions = useMemo(
     () => ({
       palette,

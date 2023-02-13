@@ -10,7 +10,7 @@ export type MyFormikTextInputProps = {
   TextFieldProps?: TextFieldProps;
 };
 
-const FormikMUITextInput = ({ id, clearOnFocus, TextFieldProps, ...rest }: MyFormikTextInputProps & FieldHookConfig<any>) => {
+export const FormikMUITextInput = ({ id, clearOnFocus, TextFieldProps, ...rest }: MyFormikTextInputProps & FieldHookConfig<any>) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input>. We can use field meta to show an error
   // message if the field is invalid and it has been touched (i.e. visited)
@@ -33,5 +33,3 @@ const FormikMUITextInput = ({ id, clearOnFocus, TextFieldProps, ...rest }: MyFor
     </>
   );
 };
-
-export default FormikMUITextInput;

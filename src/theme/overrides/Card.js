@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------
 
-export default function Card(theme) {
+export function Card(theme) {
   return {
     MuiCard: {
       styleOverrides: {

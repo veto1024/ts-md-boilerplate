@@ -60,9 +60,7 @@ const createCustomShadow = (color: string) => {
 
 export const customShadows = createCustomShadow(LIGHT_MODE);
 
-const shadows = createShadow(LIGHT_MODE);
-
-export default shadows;
+export const shadows = createShadow(LIGHT_MODE);
 
 interface CustomTheme {
   customShadows: {

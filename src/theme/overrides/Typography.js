@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------
 
-export default function Typography(theme) {
+export function Typography(theme) {
   return {
     MuiTypography: {
       styleOverrides: {

@@ -4,7 +4,6 @@ import { Field, FieldHookConfig, FieldMetaProps, FieldProps, FormikBag } from 'f
 import React, { CSSProperties } from 'react';
 import { FormHelperText, FormLabel, Grid, GridTypeMap } from '@mui/material';
 import CurrencyInput from 'react-currency-input-field';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 export type FormikMUICurrencyInputType = {
   label?: string;
@@ -17,7 +16,7 @@ export type FormikMUICurrencyInputType = {
   containerProps?: CSSProperties | undefined;
 };
 
-const FormikMUICurrencyInput = (props: FormikMUICurrencyInputType & FieldHookConfig<never>) => {
+export const FormikMUICurrencyInput = (props: FormikMUICurrencyInputType & FieldHookConfig<never>) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input>. We can use field meta to show an error
   // message if the field is invalid and it has been touched (i.e. visited)
@@ -74,5 +73,3 @@ const FormikMUICurrencyInput = (props: FormikMUICurrencyInputType & FieldHookCon
     </>
   );
 };
-
-export default FormikMUICurrencyInput;

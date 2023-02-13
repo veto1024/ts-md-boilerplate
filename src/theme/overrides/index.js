@@ -12,7 +12,7 @@ import Autocomplete from './Autocomplete';
 
 // ----------------------------------------------------------------------
 
-export default function ComponentsOverrides(theme) {
+export function ComponentsOverrides(theme) {
   return merge(
     Card(theme),
     Lists(theme),

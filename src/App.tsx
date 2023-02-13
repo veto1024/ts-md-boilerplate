@@ -16,9 +16,9 @@ import React, { FormEvent, useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import FormikMUIAutoComplete from './components/form/FormikMUIAutoComplete';
 import * as Yup from 'yup';
-import { FormikMUICheckbox, FormikMUIDateInput } from './components/form';
+import { FormikMUICheckbox, FormikMUIDateInput } from './components';
 import FormikMUIRadios from './components/form/FormikMUIRadios';
-import FormikMUITextInput from './components/form/FormikMUITextInput';
+import { FormikMUITextInput } from './components';
 import FormikMUICurrencyInput from './components/form/FormikCurrencyInput';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -26,7 +26,7 @@ import FormikMUIDateTimeInput from './components/form/FormikMUIDateTimeInput';
 import FormikMUITimeInput from './components/form/FormikMUITimeInput';
 // ----------------------------------------------------------------------
 
-export default function App() {
+export function App() {
   const typographyExamples = ['h1', 'h2', 'h3', 'h4', 'h5', 'subtitle1', 'subtitle2', 'caption', 'body1', 'body2'] as TypographyVariant[];
   useEffect(() => {
     console.warn('HI');

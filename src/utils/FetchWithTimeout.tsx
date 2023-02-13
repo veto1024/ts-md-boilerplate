@@ -5,7 +5,7 @@ export type OptionsType = {
   credentials: RequestCredentials | undefined;
   body?: string | object | number | undefined;
 };
-export default async function fetchWithTimeout(resource: RequestInfo | URL, options: OptionsType): Promise<Response> {
+export async function fetchWithTimeout(resource: RequestInfo | URL, options: OptionsType): Promise<Response> {
   const { timeout = 4000 } = options;
 
   const controller = new AbortController();
