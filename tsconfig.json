@@ -17,8 +17,8 @@
     "jsx": "react-jsx",
     "declaration": true,
     "noEmit": true,
-    "declarationDir": "dist/types"
+    "declarationDir": "dist"
   },
-  "include": ["src/**/*", "types"],
+  "include": ["src", "types"],
   "exclude": ["./node_modules"]
 }

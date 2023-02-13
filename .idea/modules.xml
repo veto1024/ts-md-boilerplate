@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ts-bs-boilerplate.iml" filepath="$PROJECT_DIR$/.idea/ts-bs-boilerplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ts-md-boilerplate/.idea/ts-md-boilerplate.iml" filepath="$PROJECT_DIR$/../ts-md-boilerplate/.idea/ts-md-boilerplate.iml" />
     </modules>
   </component>
 </project>

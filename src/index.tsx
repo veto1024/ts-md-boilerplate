@@ -1,6 +1,9 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+export * from './components';
+export * from './api';
+export * from './utils';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container as HTMLElement);
