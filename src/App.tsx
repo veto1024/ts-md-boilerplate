@@ -1,5 +1,4 @@
-// theme
-import { ThemeConfig } from './theme/globalStyles';
+import { ThemeConfig } from './theme';
 import {
   Button,
   Card,
@@ -12,7 +11,6 @@ import {
   Typography,
   TypographyVariant
 } from '@mui/material';
-import React, { FormEvent, useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -22,18 +20,25 @@ import {
   FormikMUIDateInput,
   FormikMUIDateTimeInput,
   FormikMUIRadios,
-  FormikMUITimeInput
+  FormikMUITimeInput,
+  FormikMUIToggleButtons
 } from './components';
 import { FormikMUITextInput } from './components';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import { FormEvent, useEffect } from 'react';
+import React from 'react';
+import { FormikMUISelect } from './components/form/FormikMUISelect';
+import { USStateLabels } from './utils/USStates';
 // ----------------------------------------------------------------------
 
-export function App() {
+export default function App() {
   const typographyExamples = ['h1', 'h2', 'h3', 'h4', 'h5', 'subtitle1', 'subtitle2', 'caption', 'body1', 'body2'] as TypographyVariant[];
+
   useEffect(() => {
     console.warn('HI');
   });
+
   return (
     <>
       <ThemeConfig>
@@ -89,7 +94,8 @@ const FormikCard = () => {
         'mui-radios': null,
         'mui-date': undefined,
         'mui-datetime': undefined,
-        'mui-time': undefined
+        'mui-time': undefined,
+        'mui-select': undefined
       }}
       validationSchema={Yup.object().shape({
         'autocomplete-value': Yup.object(),
@@ -97,7 +103,8 @@ const FormikCard = () => {
         'mui-radios': Yup.string().required('Please select an option.'),
         'mui-date': Yup.date().min(new Date(), 'The date must be in the future.').required('The date is required.'),
         'mui-datetime': Yup.date().min(new Date(), 'The date must be in the future.').required('The datetime is required.'),
-        'mui-time': Yup.date().min(new Date(), 'The date must be in the future.').required('The datetime is required.')
+        'mui-time': Yup.date().min(new Date(), 'The date must be in the future.').required('The datetime is required.'),
+        'mui-select': Yup.string().required('Please select an option.')
       })}
       onSubmit={(values) => console.log(values)}
     >
@@ -107,6 +114,7 @@ const FormikCard = () => {
           <Form onSubmit={(form) => myHandleSubmit(setFieldTouched, handleSubmit, form)}>
             <CardContent>
               <Grid container width="100%">
+                {/* Autocomplete */}
                 <Grid item lg={4}>
                   <Typography variant="h4">AutoComplete</Typography>
                   <FormikMUIAutoComplete
@@ -121,11 +129,19 @@ const FormikCard = () => {
                   />
                   <span>{`Value of autocomplete: ${values['autocomplete-value'].year}`}</span>
                 </Grid>
+                {/* Select */}
+                <Grid item lg={4}>
+                  <Typography variant="h4">Select</Typography>
+                  <FormikMUISelect options={USStateLabels} name="mui-select" label="Select" />
+                  <span>{`Value of select: ${values['mui-select']}`}</span>
+                </Grid>
+                {/* Checkboxes */}
                 <Grid item lg={4} padding={2}>
                   <Typography variant="h4">Checkboxes</Typography>
                   <FormikMUICheckbox name="mui-checkbox" label="Am I clicked?" component="span" width="100%" />
                   <span>{`Value of checkbox: ${values['mui-checkbox']}`}</span>
                 </Grid>
+                {/*Radio Group*/}
                 <Grid item lg={4} padding={2}>
                   <Typography variant="h4">Radio Group</Typography>
                   <FormikMUIRadios
@@ -136,9 +152,33 @@ const FormikCard = () => {
                       { label: 'Option 2', value: 'option 2' }
                     ]}
                     required
+                  />
+                </Grid>
+                {/*Toggle Button Group*/}
+                <Grid item lg={4} padding={2}>
+                  <Typography variant="h4">Toggle Button Group</Typography>
+                  <FormikMUIToggleButtons
+                    text="Formik MUI Toggle Buttons"
+                    name="mui-toggle-buttons"
+                    options={[
+                      { label: 'This is option 1', value: 'option 1' },
+                      {
+                        label: 'This is option 2 with HTML Tooltip',
+                        value: 'option 2',
+                        tooltip: (
+                          <>
+                            <b>Cool tooltip</b>
+                          </>
+                        )
+                      },
+                      { label: 'This is option 3', value: 'option 3' },
+                      { label: 'This is option 4', value: 'option 4' }
+                    ]}
+                    required
                     setFieldValue={setFieldValue}
                   />
                 </Grid>
+                {/* Text Input */}
                 <Grid item lg={4} padding={2}>
                   <Typography variant="h4">Text Field</Typography>
                   <FormikMUITextInput
@@ -202,6 +242,7 @@ const FormikCard = () => {
                     }}
                   />
                 </Grid>
+                {/* Currency Input */}
                 <Grid item lg={4} padding={2}>
                   <Typography variant="h4">Currency Input</Typography>
                   <FormikMUICurrencyInput

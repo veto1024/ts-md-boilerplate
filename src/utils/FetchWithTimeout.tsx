@@ -1,6 +1,6 @@
 export type OptionsType = {
   timeout: number;
-  method: 'GET' | 'PUT' | 'POST' | 'OPTIONS';
+  method: 'GET' | 'PUT' | 'POST' | 'PATCH' | 'DELETE';
   headers: Headers;
   credentials: RequestCredentials | undefined;
   body?: string | object | number | undefined;

@@ -10,7 +10,7 @@ export type FormikMUIAutoCompleteType = {
   filter: (arg0: any, arg1: FilterOptionsState<any>) => any[];
 };
 
-export const FormikMUIAutoComplete = ({ options, name, filter, label, noSuggestAdd }: FormikMUIAutoCompleteType) => {
+export const FormikMUIAutoComplete = ({ options, name, filter, label, noSuggestAdd, ...other }: FormikMUIAutoCompleteType) => {
   return (
     <>
       <Field name={name}>
@@ -54,6 +54,7 @@ export const FormikMUIAutoComplete = ({ options, name, filter, label, noSuggestA
                   }
                   return filtered;
                 }}
+                {...other}
               />
               {meta.error ? <FormHelperText error>{meta.error}</FormHelperText> : ''}
             </>

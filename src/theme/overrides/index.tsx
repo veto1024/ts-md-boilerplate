@@ -9,10 +9,12 @@ import { Backdrop } from './Backdrop';
 import { Typography } from './Typography';
 import { IconButton } from './IconButton';
 import { Autocomplete } from './Autocomplete';
+import { Theme } from '@mui/material';
+import { ToggleButton, ToggleButtonGroup } from './ToggleButton';
 
 // ----------------------------------------------------------------------
 
-export function ComponentsOverrides(theme) {
+export function ComponentsOverrides(theme: Theme) {
   return merge(
     Card(theme),
     Lists(theme),
@@ -23,6 +25,8 @@ export function ComponentsOverrides(theme) {
     Backdrop(theme),
     Typography(theme),
     IconButton(theme),
-    Autocomplete(theme)
+    Autocomplete(theme),
+    ToggleButton(theme),
+    ToggleButtonGroup(theme)
   );
 }

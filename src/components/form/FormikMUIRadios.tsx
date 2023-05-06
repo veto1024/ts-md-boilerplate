@@ -1,4 +1,4 @@
-import { ErrorMessage, FieldHookConfig, FieldInputProps, FieldMetaProps, useField } from 'formik';
+import { ErrorMessage, FieldHelperProps, FieldHookConfig, FieldInputProps, FieldMetaProps, useField } from 'formik';
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material';
 import React from 'react';
 
@@ -11,7 +11,6 @@ export type FormikMUIRadiosType = {
   required?: boolean;
   helperText?: string;
   options: Array<{ label: string; value: any }>;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
 };
 
 export const FormikMUIRadios = (props: FormikMUIRadiosType & FieldHookConfig<any>) => {
@@ -20,10 +19,16 @@ export const FormikMUIRadios = (props: FormikMUIRadiosType & FieldHookConfig<any
   // return the correct bag of props for you -- a `checked` prop will be included
   // in `field` alongside `name`, `value`, `onChange`, and `onBlur`
 
-  const [field, meta] = useField({ ...props, type: 'radios' });
+  const [field, meta, helpers] = useField({ ...props, type: 'radios' });
   return (
     <>
-      <QuestionWithButtons {...props} {...field} {...meta} defaultValue={props.defaultValue ? props.defaultValue : undefined} />
+      <QuestionWithButtons
+        {...props}
+        {...field}
+        {...meta}
+        {...helpers}
+        defaultValue={props.defaultValue ? props.defaultValue : undefined}
+      />
       {meta.touched && meta.error ? (
         <ErrorMessage
           render={(s) => (
@@ -38,7 +43,7 @@ export const FormikMUIRadios = (props: FormikMUIRadiosType & FieldHookConfig<any
   );
 };
 
-export const QuestionWithButtons = (props: FormikMUIRadiosType & FieldInputProps<any> & FieldMetaProps<any>) => {
+export const QuestionWithButtons = (props: FormikMUIRadiosType & FieldInputProps<any> & FieldMetaProps<any> & FieldHelperProps<any>) => {
   return (
     <FormControl
       {...(props.inline
@@ -65,7 +70,7 @@ export const QuestionWithButtons = (props: FormikMUIRadiosType & FieldInputProps
           aria-label={props['aria-label'] || props.name}
           name={`${props.name}`}
           value={props.value}
-          onChange={(event) => props.setFieldValue(props.name, str2bool(event.currentTarget.value))}
+          onChange={(event) => props.setValue(str2bool(event.currentTarget.value))}
         >
           {props.options.map((option) => (
             <FormControlLabel

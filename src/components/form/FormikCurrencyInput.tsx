@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { Field, FieldHookConfig, FieldMetaProps, FieldProps, FormikBag } from 'formik';
 import React, { CSSProperties } from 'react';
-import { FormHelperText, FormLabel, Grid, GridTypeMap } from '@mui/material';
+import { FormHelperText, FormLabel, Grid } from '@mui/material';
 import CurrencyInput from 'react-currency-input-field';
 
 export type FormikMUICurrencyInputType = {
